@@ -1,16 +1,18 @@
 from fastapi import FastAPI
+from sqlalchemy import text
 
-from app.core.config import settings
+from app.db.database import engine
 
-app = FastAPI(
-    title=settings.APP_NAME,
-    version=settings.APP_VERSION
-)
+app = FastAPI()
 
 
-@app.get("/")
-def root():
-    return {
-        "database": settings.DATABASE_URL,
-        "redis": settings.REDIS_URL
-    }
+@app.get("/db-check")
+def db_check():
+
+    with engine.connect() as conn:
+
+        result = conn.execute(text("SELECT 1"))
+
+        return {
+            "database": result.scalar()
+        }
