@@ -5,6 +5,10 @@ from app.db.database import engine
 
 app = FastAPI()
 
+@app.get("/")
+def root():
+    return {"message": "RideFlow API"}
+
 
 @app.get("/db-check")
 def db_check():
