@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+
+  postgres:
+    image: postgres:17
+    container_name: rideflow_postgres
+
+    environment:
+      POSTGRES_USER: rideflow
+      POSTGRES_PASSWORD: rideflow
+      POSTGRES_DB: rideflow
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:8
+
+    container_name: rideflow_redis
+
+    ports:
+      - "6379:6379"
+
+  pgadmin:
+    image: dpage/pgadmin4
+
+    container_name: rideflow_pgadmin
+
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@rideflow.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+
+    ports:
+      - "5050:80"
+
+volumes:
+  postgres_data:
