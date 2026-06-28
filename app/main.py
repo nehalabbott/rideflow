@@ -1,17 +1,16 @@
 from fastapi import FastAPI
 
+from app.core.config import settings
+
 app = FastAPI(
-    title="RideFlow API",
-    version="1.0.0",
-    description="Backend for RideFlow - Intelligent Ride Dispatch Platform"
+    title=settings.APP_NAME,
+    version=settings.APP_VERSION
 )
+
 
 @app.get("/")
 def root():
-    return {"message": "RideFlow API is running 🚖"}
-
-@app.get("/health")
-def health():
     return {
-        "status": "healthy"
+        "database": settings.DATABASE_URL,
+        "redis": settings.REDIS_URL
     }
