@@ -1,31 +1,83 @@
-Authentication
+# RideFlow API Documentation
 
-POST /signup
+## Authentication
 
-POST /login
+### Register
 
-POST /refresh
+POST
 
-Passenger
+```
+/auth/register
+```
 
-POST /ride/request
+### Login
 
-GET /ride/{id}
+POST
 
-DELETE /ride/{id}
+```
+/auth/login
+```
 
-Driver
+Returns JWT Access Token.
 
-POST /driver/online
+---
 
-POST /driver/location
+## User
 
-POST /driver/accept
+### Current User
 
-Admin
+GET
 
-GET /analytics
+```
+/users/me
+```
 
-GET /rides
+Requires Authorization.
 
-GET /drivers
+---
+
+## Driver
+
+### Create Driver Profile
+
+POST
+
+```
+/drivers/profile
+```
+
+### Update Driver Location
+
+POST
+
+```
+/matching/driver-location
+```
+
+---
+
+## Ride
+
+### Request Ride
+
+POST
+
+```
+/rides/request
+```
+
+Returns nearest driver.
+
+---
+
+## Matching
+
+### Find Nearest Driver
+
+POST
+
+```
+/matching/find-driver
+```
+
+Returns nearest driver using Euclidean distance.
