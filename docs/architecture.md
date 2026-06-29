@@ -1,45 +1,60 @@
 
-                Client
+ # RideFlow Architecture
 
-                   │
+```
+                FastAPI
 
-             FastAPI API
+                  │
 
-                   │
+      ┌───────────┴───────────┐
 
-        Configuration Layer
+      │                       │
 
-                   │
+ Authentication         Driver APIs
 
-           SQLAlchemy ORM
+      │                       │
 
-                   │
+      └───────────┬───────────┘
+
+                  │
+
+            Matching Service
+
+                  │
+
+      Euclidean Distance Search
+
+                  │
+
+          Assigned Driver
+
+                  │
 
              PostgreSQL
+```
 
-                   │
+---
 
-        Redis (Background Tasks)
+## Layers
 
-                   │
+API Layer
 
-            Docker Compose
+↓
 
-Why FastAPI?
-High-performance asynchronous framework
-Automatic OpenAPI documentation
-Excellent dependency injection
-Native async support
+Service Layer
 
-Why PostgreSQL?
-Strong relational model
-ACID compliance
-Excellent indexing
-Ideal for ride dispatch data
+↓
 
-Why Redis?
+Database Layer
 
-Currently reserved for:
+Models are separated from business logic.
+
+Services contain all application logic.
+
+Schemas validate requests and responses.
+
+Dependencies handle authentication.
+
 
 Driver location cache
 Ride queue
