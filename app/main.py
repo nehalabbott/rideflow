@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from sqlalchemy import text
 from app.api.auth import router as auth_router
+from app.models import *
 from app.db.base import Base
 from app.db.engine import engine
 

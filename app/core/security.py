@@ -36,8 +36,9 @@ def create_access_token(data: dict) -> str:
         settings.SECRET_KEY,
         algorithm=ALGORITHM,
     )
-
 def decode_access_token(token: str) -> dict:
+    print("TOKEN RECEIVED:", token)
+
     try:
         payload = jwt.decode(
             token,
@@ -45,7 +46,9 @@ def decode_access_token(token: str) -> dict:
             algorithms=[ALGORITHM],
         )
 
+        print("PAYLOAD:", payload)
         return payload
 
-    except JWTError:
+    except Exception as e:
+        print("JWT ERROR:", repr(e))
         raise ValueError("Invalid token")

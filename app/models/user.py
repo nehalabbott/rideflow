@@ -41,8 +41,8 @@ class User(BaseModel):
         server_default="false"
     )
     
-driver = relationship(
-    "Driver",
-    back_populates="user",
-    uselist=False,
-)
+    driver = relationship(
+        "Driver",
+        back_populates="user",
+        uselist=False,
+    )

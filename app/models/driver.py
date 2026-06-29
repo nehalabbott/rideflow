@@ -40,7 +40,7 @@ class Driver(BaseModel):
         default=False,
     )
 
-    user = relationship(
+    user: Mapped["User"] = relationship(
         "User",
         back_populates="driver",
     )

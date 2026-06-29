@@ -15,7 +15,7 @@ def get_current_user(
     db: Session = Depends(get_db),
 ):
     token = credentials.credentials
-
+    print("TOKEN:", token)
     try:
         payload = decode_access_token(token)
 

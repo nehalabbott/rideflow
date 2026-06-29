@@ -10,3 +10,10 @@ class VehicleType(str, Enum):
     BIKE = "BIKE"
     AUTO = "AUTO"
     CAR = "CAR"
+
+class RideStatus(str, Enum):
+    REQUESTED = "REQUESTED"
+    ACCEPTED = "ACCEPTED"
+    ONGOING = "ONGOING"
+    COMPLETED = "COMPLETED"
+    CANCELLED = "CANCELLED"
