@@ -21,6 +21,7 @@ Lessons Learned:
 Why environment variables matter
 How Docker networking works
 How SQLAlchemy sessions are managed
+
 # Session 2 – Authentication
 
 ## Completed
@@ -47,3 +48,14 @@ GET /users/me
 - Protected APIs
 - Dependency Injection
 - Request & Response Schemas
+
+
+## Completed
+
+- User Authentication
+- Driver Profiles
+- JWT Authorization
+- Driver Location Updates
+- Ride Matching
+
+---
