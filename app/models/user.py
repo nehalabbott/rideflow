@@ -2,6 +2,7 @@ from sqlalchemy import Boolean
 from sqlalchemy import Enum
 from sqlalchemy import String
 from sqlalchemy.orm import Mapped
+from sqlalchemy.orm import relationship
 from sqlalchemy.orm import mapped_column
 
 from app.models.base import BaseModel
@@ -39,3 +40,9 @@ class User(BaseModel):
         nullable=False,
         server_default="false"
     )
+    
+driver = relationship(
+    "Driver",
+    back_populates="user",
+    uselist=False,
+)
