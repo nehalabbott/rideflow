@@ -50,3 +50,14 @@ def print_tree(node, level=0):
 
 
 print_tree(tree)
+
+search = Boundary(
+    x=30.70,
+    y=76.75,
+    width=0.08,
+    height=0.08,
+)
+
+drivers = tree.query(search)
+
+print(drivers)
