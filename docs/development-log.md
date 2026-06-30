@@ -1,61 +1,77 @@
-Sprint 1
+# Development Log
 
-Completed:
+## Sprint 1 – Project Setup
 
-Project setup
-Docker Compose
-PostgreSQL
-Redis
-pgAdmin
-FastAPI
-Configuration management
+### Completed
+- Set up FastAPI project structure
+- Configured Docker Compose, PostgreSQL, and Adminer
+- Integrated SQLAlchemy ORM
+- Added environment-based configuration
+- Established database connection and session management
 
-Challenges:
-
-Python 3.14 compatibility with psycopg2
-Installed Python 3.12
-Configured virtual environment
-
-Lessons Learned:
-
-Why environment variables matter
-How Docker networking works
-How SQLAlchemy sessions are managed
-
-# Session 2 – Authentication
-
-## Completed
-
-- Implemented user registration.
-- Added password hashing using bcrypt.
-- Stored passwords securely in PostgreSQL.
-- Built JWT-based login.
-- Added protected routes using Bearer authentication.
-- Implemented `/users/me` endpoint.
-- Added request and response validation using Pydantic schemas.
-
-## New Endpoints
-
-POST /auth/register
-POST /auth/login
-GET /users/me
-
-## Concepts Learned
-
-- JWT Authentication
-- Password Hashing
-- Bearer Tokens
-- Protected APIs
-- Dependency Injection
-- Request & Response Schemas
-
-
-## Completed
-
-- User Authentication
-- Driver Profiles
-- JWT Authorization
-- Driver Location Updates
-- Ride Matching
+###  Learned
+- Docker networking and containers
+- SQLAlchemy sessions and models
+- Environment variable management
 
 ---
+
+## Sprint 2 – Authentication
+
+### Completed
+- User registration and login
+- Secure password hashing with bcrypt
+- JWT authentication
+- Protected routes with Bearer tokens
+- `/users/me` endpoint
+- Request/response validation using Pydantic
+- Role-based users (Passenger, Driver, Admin)
+
+### 📌 Endpoints
+- `POST /auth/register`
+- `POST /auth/login`
+- `GET /users/me`
+
+###  Learned
+- JWT Authentication
+- Password Hashing
+- Dependency Injection
+- Protected APIs
+
+---
+
+## Sprint 3 – Driver & Ride Matching
+
+### Completed
+- Driver profile creation
+- Driver location updates
+- Ride request endpoint
+- Nearest-driver matching using Euclidean distance
+- Service-layer architecture for business logic
+
+### 📌 Endpoints
+- `POST /drivers/profile`
+- `POST /matching/driver-location`
+- `POST /rides/request`
+
+### Learned
+- Service layer architecture
+- Spatial distance calculation
+- Backend request flow
+
+---
+
+## Sprint 4- Ride related
+
+- ✅ Authentication
+- ✅ PostgreSQL Integration
+- ✅ Driver Profiles
+- ✅ Driver Location Updates
+- ✅ Ride Request Flow
+- ✅ Nearest Driver Matching
+
+---
+
+## 🔜 Next Sprint
+
+- QuadTree-based driver search
