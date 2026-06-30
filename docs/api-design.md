@@ -1,83 +1,71 @@
-# RideFlow API Documentation
+# API Design
 
-## Authentication
-
-### Register
-
-POST
-
-```
-/auth/register
-```
-
-### Login
-
-POST
-
-```
-/auth/login
-```
-
-Returns JWT Access Token.
+This document provides an overview of the available REST API endpoints in RideFlow.
 
 ---
 
-## User
+# Authentication
 
-### Current User
-
-GET
-
-```
-/users/me
-```
-
-Requires Authorization.
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/auth/register` | Register a new user |
+| POST | `/auth/login` | Authenticate a user and return a JWT access token |
 
 ---
 
-## Driver
+# Users
 
-### Create Driver Profile
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/users/me` | Retrieve details of the authenticated user |
 
-POST
-
-```
-/drivers/profile
-```
-
-### Update Driver Location
-
-POST
-
-```
-/matching/driver-location
-```
+> **Authorization Required:** Bearer Token
 
 ---
 
-## Ride
+# Driver
 
-### Request Ride
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/drivers/profile` | Create a driver profile |
+| POST | `/matching/driver-location` | Update the driver's current location |
 
-POST
-
-```
-/rides/request
-```
-
-Returns nearest driver.
+> **Authorization Required:** Driver
 
 ---
 
-## Matching
+# Ride
 
-### Find Nearest Driver
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/rides/request` | Request a ride and assign the nearest available driver |
 
-POST
+> **Authorization Required:** Passenger
 
+---
+
+# Matching
+
+RideFlow uses a **QuadTree** to efficiently retrieve nearby drivers before selecting the closest one using Euclidean distance.
+
+---
+
+# Response Format
+
+All endpoints return JSON responses.
+
+### Success
+
+```json
+{
+    "message": "Success"
+}
 ```
-/matching/find-driver
-```
 
-Returns nearest driver using Euclidean distance.
+### Error
+
+```json
+{
+    "detail": "Error message"
+}
+```

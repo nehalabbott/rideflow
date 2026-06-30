@@ -1,64 +1,54 @@
-# Architecture Decisions (ADR)
+# Architecture Decision Records (ADR)
 
-This document records the major architectural decisions made during the development of RideFlow and the reasoning behind them.
-
----
-
-# ADR-001: FastAPI as the Backend Framework
-
-* Excellent performance through ASGI.
-* Native support for asynchronous programming.
-* Automatic OpenAPI (Swagger) documentation.
-* Strong type safety with Pydantic.
-* Built-in dependency injection.
-* Well suited for REST APIs and WebSockets.
-
-## Alternatives Considered
-
-* Django REST Framework
-* Flask
-
-## Why Not Them?
-
-Django provides many features that are unnecessary for this project, while Flask would require significantly more setup for validation, documentation, and dependency management.
+This document records the key architectural decisions made during the development of RideFlow.
 
 ---
 
-# ADR-002: PostgreSQL Instead of MongoDB
+# ADR-001: FastAPI
 
 ## Decision
 
-Use PostgreSQL as the primary database.
+Use **FastAPI** as the backend framework.
 
-## Reason
+## Why?
 
-RideFlow contains highly relational data.
+- High performance
+- Automatic Swagger documentation
+- Built-in request validation with Pydantic
+- Simple dependency injection
+- Clean and easy-to-maintain code
 
-Examples:
-
-* Users → Drivers
-* Drivers → Vehicles
-* Passengers → Rides
-* Rides → Payments
-* Rides → Ratings
-
-Maintaining these relationships is much simpler using a relational database.
-
-## Additional Benefits
-
-* Strong foreign key support
-* Excellent indexing
-* Reliable for production systems
+**Alternatives:** Flask, Django REST Framework
 
 ---
 
-# ADR-003: Docker Compose for Development
+# ADR-002: PostgreSQL
 
-## Reason
+## Decision
 
-Every developer gets an identical development environment.
+Use **PostgreSQL** as the database.
 
-A single command starts the complete backend:
+## Why?
+
+- Stores related data efficiently
+- Works well with SQLAlchemy
+- Supports foreign keys and indexing
+- Reliable for backend applications
+
+**Alternative:** MongoDB
+
+---
+
+# ADR-003: Docker
+
+## Decision
+
+Use **Docker Compose** for local development.
+
+## Why?
+
+- Same development environment on every machine
+- Easy setup with a single command
 
 ```bash
 docker compose up -d
@@ -66,15 +56,17 @@ docker compose up -d
 
 ---
 
-# ADR-004: Separate Driver Location Table
+# ADR-004: JWT Authentication
 
-Driver coordinates change frequently, while profile information rarely changes.
+## Decision
 
-Separating them:
+Use **JWT** for user authentication.
 
-* reduces unnecessary row updates
-* improves scalability
-* enables optimized indexing for location queries
+## Why?
+
+- Stateless authentication
+- Secure API access
+- Easy to use with protected routes
 
 ---
 
@@ -82,21 +74,24 @@ Separating them:
 
 ## Decision
 
-Use UUIDs instead of auto-incrementing integers.
+Use **UUIDs** as primary keys.
 
-## Reason
+## Why?
 
-Benefits include:
-
-* Harder to guess resource identifiers
-* Better suited for distributed systems
-* Easier future microservice integration
-* Simpler data merging across environments
-
-## Why JWT?
-
-Stateless authentication.
-
-Easy to scale.
+- Harder to guess than sequential IDs
+- Uniquely identifies records
+- Commonly used in modern backend systems
 
 ---
+
+# ADR-006: QuadTree for Driver Matching
+
+## Decision
+
+Use a **QuadTree** to organize driver locations.
+
+## Why?
+
+- Reduces the number of drivers checked during matching
+- Improves nearest-driver search compared to checking every driver
+- Falls back to a global search if no nearby drivers are found

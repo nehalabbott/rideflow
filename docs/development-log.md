@@ -1,77 +1,81 @@
 # Development Log
 
-## Sprint 1 – Project Setup
+## Session 1 – Project Setup
 
 ### Completed
 - Set up FastAPI project structure
 - Configured Docker Compose, PostgreSQL, and Adminer
-- Integrated SQLAlchemy ORM
-- Added environment-based configuration
-- Established database connection and session management
+- Integrated SQLAlchemy
+- Configured environment variables and database connection
 
-###  Learned
-- Docker networking and containers
-- SQLAlchemy sessions and models
-- Environment variable management
+### Learned
+- Docker basics
+- SQLAlchemy setup
+- Environment management
 
 ---
 
-## Sprint 2 – Authentication
+## Session 2 – Authentication
 
 ### Completed
 - User registration and login
-- Secure password hashing with bcrypt
+- Password hashing with bcrypt
 - JWT authentication
-- Protected routes with Bearer tokens
+- Protected routes
 - `/users/me` endpoint
-- Request/response validation using Pydantic
-- Role-based users (Passenger, Driver, Admin)
 
-### 📌 Endpoints
-- `POST /auth/register`
-- `POST /auth/login`
-- `GET /users/me`
-
-###  Learned
-- JWT Authentication
-- Password Hashing
-- Dependency Injection
-- Protected APIs
+### Learned
+- JWT authentication
+- Dependency injection
+- Request validation with Pydantic
 
 ---
 
-## Sprint 3 – Driver & Ride Matching
+## Session 3 – Driver Management
 
 ### Completed
 - Driver profile creation
 - Driver location updates
-- Ride request endpoint
-- Nearest-driver matching using Euclidean distance
-- Service-layer architecture for business logic
+- Role-based access control
 
-### 📌 Endpoints
+### Endpoints
 - `POST /drivers/profile`
 - `POST /matching/driver-location`
-- `POST /rides/request`
 
 ### Learned
 - Service layer architecture
-- Spatial distance calculation
+- Driver management workflow
+
+---
+
+## Session 4 – Ride Matching
+
+### Completed
+- Ride request API
+- Nearest-driver matching using Euclidean distance
+- Ride assignment flow
+
+### Endpoints
+- `POST /rides/request`
+
+### Learned
 - Backend request flow
+- Spatial distance calculation
 
 ---
 
-## Sprint 4- Ride related
+## Session 5 – QuadTree Optimization
 
-- ✅ Authentication
-- ✅ PostgreSQL Integration
-- ✅ Driver Profiles
-- ✅ Driver Location Updates
-- ✅ Ride Request Flow
-- ✅ Nearest Driver Matching
+### Completed
+- Implemented QuadTree data structure
+- Added region-based driver search
+- Integrated QuadTree into the matching service
+- Added fallback search for distant drivers
+
+### Learned
+- Spatial indexing
+- Recursive data structures
+- Search optimization
 
 ---
 
-## 🔜 Next Sprint
-
-- QuadTree-based driver search

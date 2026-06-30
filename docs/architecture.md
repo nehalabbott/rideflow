@@ -1,61 +1,71 @@
+# RideFlow Architecture
 
- # RideFlow Architecture
-
-```
-                FastAPI
-
-                  │
-
-      ┌───────────┴───────────┐
-
-      │                       │
-
- Authentication         Driver APIs
-
-      │                       │
-
-      └───────────┬───────────┘
-
-                  │
-
-            Matching Service
-
-                  │
-
-      Euclidean Distance Search
-
-                  │
-
-          Assigned Driver
-
-                  │
-
-             PostgreSQL
+```text
+                    Client
+                       │
+                       ▼
+                   FastAPI API
+                       │
+        ┌──────────────┼──────────────┐
+        │              │              │
+        ▼              ▼              ▼
+ Authentication   Driver APIs    Ride APIs
+        │              │              │
+        └──────────────┼──────────────┘
+                       ▼
+                 Service Layer
+                       │
+        ┌──────────────┼──────────────┐
+        │                             │
+        ▼                             ▼
+ Matching Service             Authentication Service
+        │
+        ▼
+ QuadTree + Distance Calculation
+        │
+        ▼
+ PostgreSQL (Users & Driver Profiles)
 ```
 
 ---
 
-## Layers
+# Architecture Layers
 
-API Layer
+### API Layer
 
-↓
+- Handles incoming HTTP requests
+- Validates requests using Pydantic schemas
+- Returns JSON responses
 
-Service Layer
+---
 
-↓
+### Service Layer
 
-Database Layer
+- Contains business logic
+- Handles authentication, ride requests, and driver matching
+- Keeps API routes lightweight
 
-Models are separated from business logic.
+---
 
-Services contain all application logic.
+### Database Layer
 
-Schemas validate requests and responses.
+- Stores users and driver profiles
+- Uses SQLAlchemy ORM with PostgreSQL
 
-Dependencies handle authentication.
+---
 
+### Matching Layer
 
-Driver location cache
-Ride queue
-Celery broker
+- Stores driver locations in a QuadTree
+- Finds nearby drivers efficiently
+- Selects the nearest driver using Euclidean distance
+
+---
+
+## Design Principles
+
+- Separation of concerns
+- Layered architecture
+- Service-based business logic
+- Schema validation with Pydantic
+- Stateless JWT authentication

@@ -1,34 +1,43 @@
+# Setup Guide
+
+## Prerequisites
+
+- Python 3.12+
+- Docker & Docker Compose
+- Git
+
+---
 
 ## Installation
 
-Clone the repository
+### Clone the repository
 
 ```bash
-git clone <repo-url>
+git clone <https://github.com/nehalabbott/rideflow.git>
 cd rideflow
 ```
 
-Create virtual environment
+### Create a virtual environment
 
 ```bash
 python -m venv .venv
 ```
 
-Activate
+### Activate the environment
 
-Windows
+**Windows**
 
 ```bash
 .venv\Scripts\activate
 ```
 
-Linux/Mac
+**Linux / macOS**
 
 ```bash
 source .venv/bin/activate
 ```
 
-Install dependencies
+### Install dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -36,15 +45,13 @@ pip install -r requirements.txt
 
 ---
 
-## Docker
-
-Start services
+## Start Docker Services
 
 ```bash
 docker compose up -d
 ```
 
-Stop
+To stop the services:
 
 ```bash
 docker compose down
@@ -52,31 +59,17 @@ docker compose down
 
 ---
 
-## Run Backend
+## Run the Backend
 
 ```bash
 uvicorn app.main:app --reload
 ```
 
-Swagger
-
-```
-http://localhost:8000/docs
-```
-
-Adminer
-
-```
-http://localhost:8080
-```
-
 ---
 
+## Access the Application
 
-Swagger
-
-localhost:8000/docs
-
-pgAdmin
-
-localhost:5050
+| Service | URL |
+|---------|-----|
+| Swagger UI | http://localhost:8000/docs |
+| Adminer | http://localhost:8080 |

@@ -1,31 +1,41 @@
-Current planned tables:
+# Database Design
 
-users : stores authentication and common user info
+## Current Tables
 
-passengers 
+| Table | Purpose |
+|-------|---------|
+| `users` | Stores user accounts, authentication details, and roles |
+| `driver_profiles` | Stores driver-specific information |
+| `rides` | Stores ride requests and ride details |
 
-drivers
+---
 
-vehicles
+## Relationships
 
-driver_locations: Stores live coordinates separately because they change frequently
+```text
+Users
+   │
+   ├── Driver Profile (1:1)
+   │
+   └── Rides (1:N)
+```
 
-rides
+- One user can create multiple rides.
+- A driver profile belongs to exactly one user.
 
-payments
+---
 
-ratings
+## Planned Tables
 
-notifications
+These tables are planned for future development:
 
-ride_logs
-
-receipts
-
-refresh_tokens
-
-otp_codes
-
-surge_zones
-
-admin_logs
+- `vehicles`
+- `payments`
+- `ratings`
+- `notifications`
+- `ride_logs`
+- `receipts`
+- `refresh_tokens`
+- `otp_codes`
+- `surge_zones`
+- `admin_logs`
